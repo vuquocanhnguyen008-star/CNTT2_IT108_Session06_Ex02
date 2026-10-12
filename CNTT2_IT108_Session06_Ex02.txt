@@ -1,0 +1,12 @@
+Bài 2: Phân tích Lỗi 404 từ File Log Máy chủ
+Phần 1: Phân tích
+Sai lầm của An về bản chất câu lệnh:
+
+Get-ChildItem: Là lệnh dùng để tìm kiếm tên file/thư mục trong hệ thống tệp (file system). Vì An dùng Get-ChildItem -Filter "*404*" nên nó chỉ tìm các file có tên chứa ký tự 404, không quét nội dung bên trong file.
+
+Select-String: Mới là lệnh chuyên dùng để tìm kiếm chuỗi/nội dung văn bản bên trong tệp.
+
+Phần 2: Sửa lỗi
+Câu lệnh PowerShell chuẩn lọc các dòng chứa chữ "ERROR" từ file access.log kèm số dòng:
+
+Select-String -Path access.log -Pattern "ERROR"
